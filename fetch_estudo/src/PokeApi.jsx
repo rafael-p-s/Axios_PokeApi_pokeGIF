@@ -9,7 +9,7 @@ export function PokeApi({ data, i }) {
   useEffect(() => {
     axios.get(data.url).then((response) => setDetails(response.data));
     // .then((resp) => console.log(data));
-  }, []);
+  }, [data]);
 
   if (details === null) {
     return <div>-</div>;
