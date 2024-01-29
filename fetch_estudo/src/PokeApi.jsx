@@ -5,13 +5,10 @@ import styles from "./PokeApi.module.css";
 
 export function PokeApi({ data, i }) {
   const [details, setDetails] = useState(null);
-  const [pokeImg, setPokeImg] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(data.url)
-      .then((response) => setDetails(response.data))
-      // .then((resp) => console.log(data));
+    axios.get(data.url).then((response) => setDetails(response.data));
+    // .then((resp) => console.log(data));
   }, []);
 
   if (details === null) {
@@ -24,8 +21,16 @@ export function PokeApi({ data, i }) {
         <header className={styles.poke_card_header}>
           <h3>{details.name}</h3>
         </header>
+        {/* Maneira simples para mostrar a img do pokemon. */}
         {/* <img src={details.sprites.front_default} /> */}
-        <img src={details.sprites.versions['generation-v']['black-white'].animated.front_default} alt={details.name} />
+        {/* Dessa maneira \/, está pegando os pokes animados. Porém ele quebra a organização dos cards. */}
+        <img
+          src={
+            details.sprites.versions["generation-v"]["black-white"].animated
+              .front_default
+          }
+          alt={details.name}
+        />
         <p>N°: {details.id}</p>
       </div>
     </div>
